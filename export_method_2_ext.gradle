@@ -1,0 +1,38 @@
+
+
+def localProperties(String key) {
+    Properties p = new Properties()
+    File file = new File("./local.properties")
+    if (file.exists()) {
+        p.load(new FileInputStream(file))
+        return p.getProperty(key)
+    }else{
+        return ""
+    }
+}
+
+println "this: $this"
+println "this.dump(): " + this.dump()
+
+println "gradle.ext : $gradle.ext"
+println "gradle.ext : $gradle.ext.properties"
+gradle.ext {
+    localProperties = this.&localProperties
+}
+println "gradle.ext : $gradle.ext.properties"
+
+println "ext : $ext"
+println "ext : $ext.properties"
+ext {
+    localProperties = this.&localProperties
+}
+println "ext : $ext.properties"
+
+println "rootProject : $rootProject"
+
+//Could not get unknown property 'project' for settings 'ExportLocalProperties2Ext' of type org.gradle.initialization.DefaultSettings.
+//println "project : $project"
+
+
+println "gradle.ext.localProperties(\"localproperty1\") " + gradle.ext.localProperties("localproperty1")
+println "ext.localProperties(\"localproperty1\") " + ext.localProperties("localproperty1")

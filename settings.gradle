@@ -1,0 +1,7 @@
+
+
+apply from: "./export_method_2_ext.gradle"
+
+
+include ':app'
+rootProject.name = "ExportLocalProperties2Ext"
