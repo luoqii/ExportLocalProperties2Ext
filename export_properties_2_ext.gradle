@@ -1,0 +1,55 @@
+def log(message) {
+    logger.lifecycle("[settings] ${message}")
+}
+
+
+Properties localProperties = null
+
+if (file('local.properties').canRead()) {
+    localProperties = new Properties()
+    localProperties.load(file('local.properties').newDataInputStream())
+    log('Loaded local.properties')
+} else {
+    log('Missing local.properties; see https://github.com/mozilla-mobile/fenix/blob/master/README.md#local-properties-helpers for instructions.')
+}
+
+if (localProperties != null) {
+    localProperties.each { prop ->
+        gradle.ext.set("localProperties.${prop.key}", prop.value)
+    }
+}
+
+println "this: $this"
+println "this.dump(): " + this.dump()
+
+//println "this.delegate: " + this.delegate
+
+println "gradle.dump() " + gradle.dump()
+println "gradle.ext : $gradle.ext"
+println "gradle.ext : $gradle.ext.properties"
+if (localProperties != null) {
+    localProperties.each { prop ->
+        gradle.ext.set("localProperties.${prop.key}", prop.value)
+    }
+}
+println "gradle.ext : $gradle.ext.properties"
+
+println "ext : $ext"
+println "ext : $ext.properties"
+if (localProperties != null) {
+    localProperties.each { prop ->
+        ext.set("localProperties.${prop.key}", prop.value)
+    }
+}
+println "ext : $ext.properties"
+
+println "rootProject : $rootProject"
+
+//Could not get unknown property 'project' for settings 'ExportLocalProperties2Ext' of type org.gradle.initialization.DefaultSettings.
+//println "project : $project"
+
+
+//Cannot get property 'localProperties' on extra properties extension as it does not exist
+//println "gradle.ext.localProperties.sdk.dir " + gradle.ext.localProperties.sdk.dir
+println "gradle.ext.localProperties.sdk.dir " + gradle.ext.'localProperties.sdk.dir'
+println "ext.localProperties.sdk.dir " + ext.'localProperties.sdk.dir'

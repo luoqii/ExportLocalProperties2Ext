@@ -11,9 +11,13 @@ def localProperties(String key) {
     }
 }
 
+
 println "this: $this"
 println "this.dump(): " + this.dump()
 
+//println "this.delegate: " + this.delegate
+
+println "gradle.dump() " + gradle.dump()
 println "gradle.ext : $gradle.ext"
 println "gradle.ext : $gradle.ext.properties"
 gradle.ext {

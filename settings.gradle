@@ -1,6 +1,7 @@
 
 
 apply from: "./export_method_2_ext.gradle"
+apply from: "./export_properties_2_ext.gradle"
 
 
 include ':app'

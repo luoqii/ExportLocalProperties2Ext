@@ -45,4 +45,9 @@ println "this.dump(): " + this.dump()
 println "gradle.ext.localProperties(\"localproperty1\") " + gradle.ext.localProperties("localproperty1")
 //No signature of method: org.gradle.internal.extensibility.DefaultExtraPropertiesExtension.localProperties() is applicable for argument types: (
 //String) values: [localproperty1]
-println "ext.localProperties(\"localproperty1\") " + ext.localProperties("localproperty1")
+//println "ext.localProperties(\"localproperty1\") " + ext.localProperties("localproperty1")
+
+
+println "gradle.ext.localProperties.sdk.dir " + gradle.ext.'localProperties.sdk.dir'
+// Cannot get property 'localProperties.sdk.dir' on extra properties extension as it does not exist
+//println "ext.localProperties.sdk.dir " + ext.'localProperties.sdk.dir'
